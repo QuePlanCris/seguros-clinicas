@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguros de Salud - Landing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img id="logo" src="" alt="Logo" class="logo">
+                </div>
+                <nav class="header-nav">
+                    <ul class="nav-menu" id="navMenu">
+                        <!-- Las categorías se cargarán dinámicamente -->
+                    </ul>
+                    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </nav>
+                <div class="cliente-selector">
+                    <label for="selectCliente">Cliente:</label>
+                    <select id="selectCliente" class="select-cliente">
+                        <option value="cliente1">Clínica Las Condes</option>
+                        <option value="cliente2">Clínica U Andes</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="heroSection">
+        <div class="hero-content">
+            <h1 class="hero-title" id="heroTitle"></h1>
+            <h2 class="hero-subtitle" id="heroSubtitle"></h2>
+            <p class="hero-price" id="heroPrice"></p>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="categorias-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Seguros</h2>
+            <p class="section-subtitle">Elige la protección que mejor se adapte a tus necesidades</p>
+            <div class="categorias-grid" id="categoriasGrid">
+                <!-- Las categorías se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section class="productos-section">
+        <div class="container">
+            <h2 class="section-title section-title-with-icon section-title-no-bg" id="productosTitle">
+                <span class="section-title-icon" id="productosTitleIcon"></span>
+                <span class="section-title-text">Productos</span>
+            </h2>
+            <p class="section-subtitle" id="productosSubtitle">Descubre nuestros planes y elige el que mejor se adapte a ti</p>
+            <div class="productos-grid" id="productosGrid">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios y FAQs -->
+    <section class="info-section">
+        <div class="container">
+            <div class="info-content">
+                <!-- Beneficios -->
+                <div class="beneficios-container">
+                    <h3 class="info-title">Beneficios</h3>
+                    <ul class="beneficios-list" id="beneficiosList">
+                        <!-- Los beneficios se cargarán dinámicamente -->
+                    </ul>
+                </div>
+
+                <!-- Preguntas Frecuentes -->
+                <div class="faqs-container">
+                    <h3 class="info-title">Preguntas Frecuentes</h3>
+                    <div class="faqs-list" id="faqsList">
+                        <!-- Las FAQs se cargarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portal y Formulario de Apoyo -->
+    <section class="portal-section">
+        <div class="container">
+            <div class="portal-content">
+                <!-- Portal -->
+                <div class="portal-info" id="portalInfo">
+                    <div class="portal-header">
+                        <img id="portalLogo" src="" alt="Logo" class="portal-logo">
+                        <div class="portal-icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                    </div>
+                    <h3 class="portal-title">Portal del Asegurado</h3>
+                    <p class="portal-text" id="portalText"></p>
+                    <a href="#" class="portal-link" id="portalLink" target="_blank">
+                        <span class="portal-link-text" id="portalLinkText"></span>
+                        <i class="fas fa-arrow-right portal-link-icon"></i>
+                    </a>
+                </div>
+
+                <!-- Formulario de Apoyo -->
+                <div class="formulario-apoyo" id="formularioApoyo">
+                    <h3 class="formulario-titulo" id="formularioTitulo"></h3>
+                    <form class="apoyo-form" id="apoyoForm">
+                        <div class="form-group">
+                            <label for="nombreApoyo">Nombre</label>
+                            <input type="text" id="nombreApoyo" name="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rutApoyo">RUT</label>
+                            <input type="text" id="rutApoyo" name="rut" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="companiaApoyo">Compañía</label>
+                            <select id="companiaApoyo" name="compania" required>
+                                <option value="">Seleccione una compañía</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-enviar">Enviar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Logo -->
+                <div class="footer-logo">
+                    <img id="footerLogo" src="" alt="Logo" class="footer-logo-img">
+                </div>
+                
+                <!-- Contacto -->
+                <div class="footer-contacto">
+                    <h4 class="footer-title">Contacto</h4>
+                    <div class="contacto-item">
+                        <i class="fas fa-phone contacto-icon"></i>
+                        <a href="tel:" id="footerTelefono" class="contacto-link"></a>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-envelope contacto-icon"></i>
+                        <a href="mailto:" id="footerEmail" class="contacto-link"></a>
+                    </div>
+                    <div class="contacto-item">
+                        <i class="fas fa-map-marker-alt contacto-icon"></i>
+                        <span id="footerDireccion" class="contacto-text"></span>
+                    </div>
+                </div>
+                
+                <!-- Redes Sociales -->
+                <div class="footer-redes">
+                    <h4 class="footer-title">Síguenos</h4>
+                    <div class="redes-sociales" id="redesSociales">
+                        <!-- Las redes sociales se cargarán dinámicamente -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-text">&copy; 2024 <span id="footerNombre"></span> - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
