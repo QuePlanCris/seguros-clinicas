@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="fontawesome/all.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -26,13 +26,6 @@
                         <i class="fas fa-bars"></i>
                     </button>
                 </nav>
-                <div class="cliente-selector">
-                    <label for="selectCliente">Cliente:</label>
-                    <select id="selectCliente" class="select-cliente">
-                        <option value="cliente1">Clínica Las Condes</option>
-                        <option value="cliente2">Clínica U Andes</option>
-                    </select>
-                </div>
             </div>
         </div>
     </header>
@@ -43,11 +36,25 @@
             <h1 class="hero-title" id="heroTitle"></h1>
             <h2 class="hero-subtitle" id="heroSubtitle"></h2>
             <p class="hero-price" id="heroPrice"></p>
+            <a href="#categoriasSection" class="btn-hero-cta">
+                Ver Seguros
+                <i class="fas fa-arrow-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Beneficios Únicos -->
+    <section class="beneficios-unicos-section" id="beneficiosUnicosSection">
+        <div class="container">
+            <h2 class="beneficios-unicos-title" id="beneficiosUnicosTitle"></h2>
+            <div class="beneficios-unicos-grid" id="beneficiosUnicosGrid">
+                <!-- Los beneficios se cargarán dinámicamente -->
+            </div>
         </div>
     </section>
 
     <!-- Categorías -->
-    <section class="categorias-section">
+    <section class="categorias-section" id="categoriasSection">
         <div class="container">
             <h2 class="section-title">Nuestros Seguros</h2>
             <p class="section-subtitle">Elige la protección que mejor se adapte a tus necesidades</p>
@@ -139,6 +146,16 @@
         </div>
     </section>
 
+    <!-- Soporte Presencial -->
+    <section class="soporte-section" id="soporteSection">
+        <div class="container">
+            <h2 class="section-title" id="soporteTitle"></h2>
+            <div class="soporte-grid" id="soporteGrid">
+                <!-- Las tarjetas de soporte se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
@@ -175,10 +192,29 @@
             </div>
             
             <div class="footer-bottom">
-                <p class="footer-text">&copy; 2024 <span id="footerNombre"></span> - Todos los derechos reservados</p>
+                <p class="footer-text">&copy; 2025 <span id="footerNombre"></span> - Todos los derechos <span class="reservados-link" id="reservadosLink">reservados</span></p>
             </div>
         </div>
     </footer>
+
+    <!-- Modal Selector de Cliente -->
+    <div class="cliente-modal" id="clienteModal">
+        <div class="cliente-modal-overlay" id="clienteModalOverlay"></div>
+        <div class="cliente-modal-content">
+            <div class="cliente-modal-header">
+                <h3>Seleccionar Cliente</h3>
+                <button class="cliente-modal-close" id="clienteModalClose" aria-label="Cerrar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="cliente-modal-body">
+                <select id="selectCliente" class="select-cliente-modal">
+                    <option value="cliente2" selected>Clínica U Andes</option>
+                    <option value="cliente1">Clínica MEDS</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>

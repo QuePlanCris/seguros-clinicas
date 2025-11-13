@@ -21,21 +21,39 @@ const aseguradoras = {
 // Configuración de clientes
 const clientes = {
   cliente1: {
-    nombre: "Clínica Las Condes",
-    logo: "https://www.clinicalascondes.cl/Dev_CLC/media/Imagenes/banner_home/logo-clc.svg",
+    nombre: "Clínica MEDS",
+    logo: "https://www.meds.cl/wp-content/uploads/Logo-MEDS-2023.svg",
     hero: {
       imagen: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1920&h=800&fit=crop",
-      titulo: "Clínica Las Condes",
+      titulo: "Clínica MEDS",
       subtitulo: "Protección integral para tu salud y la de tu familia",
       mostrarPrecio: true
     },
     colores: {
-      primary: "#0033a0",
+      primary: "#486db7",
       secondary: "#2C3E50",
       accent: "#E74C3C",
       background: "#F8F9FA",
       text: "#2C3E50",
       textLight: "#7F8C8D"
+    },
+    beneficiosUnicos: {
+      mostrar: true,
+      titulo: "Beneficios que no encontrarás en otros seguros",
+      beneficios: [
+        {
+          icono: "far fa-heart-circle-check",
+          texto: "Cobertura en prestaciones de salud mental"
+        },
+        {
+          icono: "far fa-handshake",
+          texto: "Sin término de vigencia por edad"
+        },
+        {
+          icono: "far fa-users",
+          texto: "Edad de contratación hasta los 79 años y 364 días"
+        }
+      ]
     },
     categorias: [
       {
@@ -143,6 +161,15 @@ const clientes = {
         aseguradora: "help"
       },
       {
+        id: "onco-meds",
+        categoria: "oncologicos",
+        nombre: "Plan Oncológico MEDS",
+        precio: "$55.000",
+        descripcion: "Cobertura oncológica integral con la red MEDS",
+        caracteristicas: ["Quimioterapia y radioterapia", "Cirugías oncológicas", "Medicamentos especializados", "Red de especialistas MEDS", "Segunda opinión médica"],
+        aseguradora: "propia"
+      },
+      {
         id: "dental-basico",
         categoria: "dentales",
         nombre: "Plan Dental Básico",
@@ -161,6 +188,15 @@ const clientes = {
         aseguradora: "sura"
       },
       {
+        id: "dental-meds",
+        categoria: "dentales",
+        nombre: "Plan Dental MEDS",
+        precio: "$30.000",
+        descripcion: "Cuidado dental completo con la red MEDS",
+        caracteristicas: ["Limpiezas semestrales gratuitas", "Consultas ilimitadas", "Emergencias 24/7", "Ortodoncia con descuento", "Red de dentistas MEDS"],
+        aseguradora: "propia"
+      },
+      {
         id: "complementario-basico",
         categoria: "complementarios",
         nombre: "Plan Complementario Básico",
@@ -177,22 +213,31 @@ const clientes = {
         descripcion: "Cobertura complementaria ampliada",
         caracteristicas: ["Todo lo del plan básico", "Mayor cobertura medicamentos", "Exámenes avanzados", "Consultas especialistas", "Reembolsos rápidos"],
         aseguradora: "consorcio"
+      },
+      {
+        id: "complementario-meds",
+        categoria: "complementarios",
+        nombre: "Plan Complementario MEDS",
+        precio: "$20.000",
+        descripcion: "Complemento ideal con beneficios MEDS",
+        caracteristicas: ["Medicamentos ambulatorios", "Exámenes preventivos anuales", "Telemedicina incluida", "Descuentos en farmacias MEDS", "Red de atención MEDS"],
+        aseguradora: "propia"
       }
     ],
     contacto: {
       telefono: "+56 2 2345 6789",
-      email: "contacto@segurospremium.cl",
+      email: "contacto@meds.cl",
       direccion: "Av. Providencia 1234, Oficina 501, Santiago, Chile",
       redesSociales: {
-        facebook: "https://facebook.com/segurospremium",
-        instagram: "https://instagram.com/segurospremium",
-        linkedin: "https://linkedin.com/company/segurospremium",
-        twitter: "https://twitter.com/segurospremium"
+        facebook: "https://facebook.com/meds",
+        instagram: "https://instagram.com/meds",
+        linkedin: "https://linkedin.com/company/meds",
+        twitter: "https://twitter.com/meds"
       }
     },
     portal: {
       texto: "Administra tus seguros y convenios en línea en tu portal de asegurado/beneficiario.",
-      url: "https://portal.segurospremium.cl/",
+      url: "https://portal.meds.cl/",
       textoEnlace: "PORTAL ASEGURADO",
       mostrar: true
     },
@@ -200,6 +245,36 @@ const clientes = {
       titulo: "Ya tengo un seguro, necesito apoyo",
       mostrar: true,
       companias: ["SURA", "Help", "Consorcio", "Producto Propio"]
+    },
+    soportePresencial: {
+      mostrar: true,
+      titulo: "Soporte presencial en MEDS",
+      aseguradoras: [
+        {
+          id: "propia",
+          nombre: "Convenios propio",
+          oficina: "Oficina Central, Piso 3",
+          horario: "lunes a viernes, de 9:00 a 18:00 horas"
+        },
+        {
+          id: "sura",
+          nombre: "Sura",
+          oficina: "Oficina Central, Piso 3",
+          horario: "lunes a viernes, de 9:00 a 18:00 horas"
+        },
+        {
+          id: "help",
+          nombre: "Help",
+          oficina: "Oficina Central, Piso 3",
+          horario: "lunes a viernes, de 9:00 a 18:00 horas"
+        },
+        {
+          id: "consorcio",
+          nombre: "Consorcio",
+          oficina: "Oficina Central, Piso 3",
+          horario: "lunes a viernes, de 9:00 a 18:00 horas"
+        }
+      ]
     }
   },
   cliente2: {
@@ -219,6 +294,24 @@ const clientes = {
       background: "#F8F9FA",
       text: "#2C3E50",
       textLight: "#6C757D"
+    },
+    beneficiosUnicos: {
+      mostrar: true,
+      titulo: "Beneficios que no encontrarás en otros seguros",
+      beneficios: [
+        {
+          icono: "far fa-heart-circle-check",
+          texto: "Cobertura en prestaciones de salud mental"
+        },
+        {
+          icono: "far fa-handshake",
+          texto: "Sin término de vigencia por edad"
+        },
+        {
+          icono: "far fa-users",
+          texto: "Edad de contratación hasta los 79 años y 364 días"
+        }
+      ]
     },
     categorias: [
       {
@@ -304,6 +397,34 @@ const clientes = {
             respuesta: "Sí, incluye resonancias, tomografías, ecografías y otros exámenes de diagnóstico avanzado con copago reducido."
           }
         ]
+      },
+      {
+        id: "complementarios",
+        nombre: "Complementarios",
+        icono: "fas fa-plus-circle",
+        imagen: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=1200&h=600&fit=crop",
+        descripcion: "Complementa tu seguro principal con cobertura adicional",
+        beneficios: [
+          "Complementa tu seguro de salud principal",
+          "Cobertura de medicamentos ambulatorios",
+          "Exámenes preventivos anuales",
+          "Telemedicina incluida",
+          "Descuentos en farmacias afiliadas"
+        ],
+        preguntasFrecuentes: [
+          {
+            pregunta: "¿Puedo tenerlo junto con otro seguro?",
+            respuesta: "Sí, está diseñado para complementar tu seguro principal y cubrir gastos adicionales."
+          },
+          {
+            pregunta: "¿Qué medicamentos cubre?",
+            respuesta: "Cubre medicamentos ambulatorios con un copago del 30%, hasta un tope mensual."
+          },
+          {
+            pregunta: "¿Incluye hospitalización?",
+            respuesta: "No, este seguro complementa la cobertura ambulatoria. La hospitalización debe estar en tu seguro principal."
+          }
+        ]
       }
     ],
     productos: [
@@ -360,6 +481,15 @@ const clientes = {
         descripcion: "Acceso completo a especialistas y diagnóstico avanzado",
         caracteristicas: ["Todo el plan básico", "Exámenes avanzados incluidos", "Segunda opinión médica", "Tratamientos especializados", "Sin límite de consultas"],
         aseguradora: "sura"
+      },
+      {
+        id: "complementario-consorcio",
+        categoria: "complementarios",
+        nombre: "Seguros Complementario",
+        precio: "$25.000",
+        descripcion: "Cobertura complementaria para medicamentos y exámenes preventivos",
+        caracteristicas: ["Medicamentos ambulatorios", "Exámenes preventivos anuales", "Telemedicina incluida", "Descuentos en farmacias"],
+        aseguradora: "consorcio"
       }
     ],
     contacto: {
@@ -383,10 +513,40 @@ const clientes = {
       titulo: "Ya tengo un seguro, necesito apoyo",
       mostrar: true,
       companias: ["SURA", "Help", "Propio"]
+    },
+    soportePresencial: {
+      mostrar: true,
+      titulo: "Soporte presencial en la clínica U Andes",
+      aseguradoras: [
+        {
+          id: "propia",
+          nombre: "Convenios propio",
+          oficina: "Piso -1, Edificio C",
+          horario: "lunes a viernes, de 8:30 a 17:30 horas"
+        },
+        {
+          id: "sura",
+          nombre: "Sura",
+          oficina: "Piso -1, Edificio C",
+          horario: "lunes a viernes, de 8:30 a 17:30 horas"
+        },
+        {
+          id: "help",
+          nombre: "Help",
+          oficina: "Piso -1, Edificio C",
+          horario: "lunes a viernes, de 8:30 a 17:30 horas"
+        },
+        {
+          id: "consorcio",
+          nombre: "Consorcio",
+          oficina: "Piso -1, Edificio C",
+          horario: "lunes a viernes, de 8:30 a 17:30 horas"
+        }
+      ]
     }
   }
 };
 
 // Cliente actual (se puede cambiar dinámicamente)
-let clienteActual = 'cliente1';
+let clienteActual = 'cliente2';
 

@@ -11,11 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function inicializarLanding() {
     aplicarEstilosCliente();
     cargarHero();
+    cargarBeneficiosUnicos();
     cargarCategorias();
     cargarProductos();
     actualizarInfoCategoria();
     cargarFooter();
     cargarPortalYFormulario();
+    cargarSoportePresencial();
     configurarSectionTitles();
 }
 
@@ -43,11 +45,53 @@ function configurarSectionTitles() {
 // Configurar event listeners
 function configurarEventListeners() {
     const selectCliente = document.getElementById('selectCliente');
-    selectCliente.addEventListener('change', (e) => {
-        clienteActual = e.target.value;
-        categoriaSeleccionada = null; // Se reseteará y se seleccionará la primera en cargarCategorias
-        inicializarLanding();
-    });
+    const reservadosLink = document.getElementById('reservadosLink');
+    const clienteModal = document.getElementById('clienteModal');
+    const clienteModalOverlay = document.getElementById('clienteModalOverlay');
+    const clienteModalClose = document.getElementById('clienteModalClose');
+    
+    // Abrir modal al hacer clic en "reservados"
+    if (reservadosLink) {
+        reservadosLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (clienteModal && selectCliente) {
+                // Establecer el valor actual del cliente en el select
+                selectCliente.value = clienteActual;
+                clienteModal.classList.add('active');
+            }
+        });
+    }
+    
+    // Cerrar modal al hacer clic en overlay
+    if (clienteModalOverlay) {
+        clienteModalOverlay.addEventListener('click', () => {
+            if (clienteModal) {
+                clienteModal.classList.remove('active');
+            }
+        });
+    }
+    
+    // Cerrar modal al hacer clic en botón cerrar
+    if (clienteModalClose) {
+        clienteModalClose.addEventListener('click', () => {
+            if (clienteModal) {
+                clienteModal.classList.remove('active');
+            }
+        });
+    }
+    
+    // Cambiar cliente
+    if (selectCliente) {
+        selectCliente.addEventListener('change', (e) => {
+            clienteActual = e.target.value;
+            categoriaSeleccionada = null; // Se reseteará y se seleccionará la primera en cargarCategorias
+            inicializarLanding();
+            // Cerrar modal después de seleccionar
+            if (clienteModal) {
+                clienteModal.classList.remove('active');
+            }
+        });
+    }
     
     // Toggle del menú móvil
     const menuToggle = document.getElementById('menuToggle');
@@ -154,6 +198,47 @@ function cargarHero() {
         }
     } else {
         heroPrice.textContent = '';
+    }
+}
+
+// Cargar beneficios únicos
+function cargarBeneficiosUnicos() {
+    const cliente = clientes[clienteActual];
+    const beneficiosSection = document.getElementById('beneficiosUnicosSection');
+    const beneficiosTitle = document.getElementById('beneficiosUnicosTitle');
+    const beneficiosGrid = document.getElementById('beneficiosUnicosGrid');
+    
+    if (!beneficiosSection || !cliente.beneficiosUnicos) return;
+    
+    if (cliente.beneficiosUnicos.mostrar && cliente.beneficiosUnicos.beneficios.length > 0) {
+        // Mostrar la sección
+        beneficiosSection.style.display = 'block';
+        
+        // Cargar título
+        if (beneficiosTitle) {
+            beneficiosTitle.textContent = cliente.beneficiosUnicos.titulo;
+        }
+        
+        // Limpiar grid
+        if (beneficiosGrid) beneficiosGrid.innerHTML = '';
+        
+        // Crear cards para cada beneficio
+        cliente.beneficiosUnicos.beneficios.forEach(beneficio => {
+            const card = document.createElement('div');
+            card.className = 'beneficio-unico-card fade-in';
+            
+            card.innerHTML = `
+                <div class="beneficio-unico-icon">
+                    <i class="${beneficio.icono}"></i>
+                </div>
+                <p class="beneficio-unico-texto">${beneficio.texto}</p>
+            `;
+            
+            if (beneficiosGrid) beneficiosGrid.appendChild(card);
+        });
+    } else {
+        // Ocultar la sección
+        if (beneficiosSection) beneficiosSection.style.display = 'none';
     }
 }
 
@@ -326,7 +411,7 @@ function cargarProductos() {
                         ${logoAseguradora}
                     </div>
                 </div>
-                <div class="producto-precio">${producto.precio}</div>
+                <div class="producto-precio">${producto.precio} <span class="precio-mes">/mes</span></div>
                 <p class="producto-descripcion">${producto.descripcion}</p>
                 <ul class="producto-caracteristicas">
                     ${producto.caracteristicas.map(caracteristica => 
@@ -334,9 +419,14 @@ function cargarProductos() {
                     ).join('')}
                 </ul>
             </div>
-            <button class="btn-contratar" onclick="contratarProducto('${producto.id}')">
-                Contratar
-            </button>
+            <div class="producto-buttons">
+                <button class="btn-contratar" onclick="contratarProducto('${producto.id}')">
+                    Contratar
+                </button>
+                <button class="btn-ver-detalle" onclick="verDetalleProducto('${producto.id}')">
+                    Ver detalle
+                </button>
+            </div>
         `;
         
         productosGrid.appendChild(productoCard);
@@ -441,6 +531,78 @@ function cargarPortalYFormulario() {
     }
 }
 
+// Cargar soporte presencial
+function cargarSoportePresencial() {
+    const cliente = clientes[clienteActual];
+    const soporteSection = document.getElementById('soporteSection');
+    const soporteTitle = document.getElementById('soporteTitle');
+    const soporteGrid = document.getElementById('soporteGrid');
+    
+    if (!soporteSection || !cliente.soportePresencial) return;
+    
+    if (cliente.soportePresencial.mostrar && cliente.soportePresencial.aseguradoras.length > 0) {
+        // Mostrar la sección
+        soporteSection.style.display = 'block';
+        
+        // Cargar título
+        if (soporteTitle) {
+            soporteTitle.textContent = cliente.soportePresencial.titulo;
+            soporteTitle.setAttribute('data-text', 'Soporte Presencial');
+        }
+        
+        // Limpiar grid
+        if (soporteGrid) soporteGrid.innerHTML = '';
+        
+        // Crear cards para cada aseguradora
+        cliente.soportePresencial.aseguradoras.forEach(aseguradoraData => {
+            const aseguradora = aseguradoras[aseguradoraData.id];
+            if (!aseguradora) return;
+            
+            const card = document.createElement('div');
+            card.className = 'soporte-card fade-in';
+            
+            // Obtener logo
+            let logoHtml = '';
+            if (aseguradoraData.id === 'propia') {
+                // Si es producto propio, usar el logo del cliente
+                logoHtml = `<img src="${cliente.logo}" alt="${cliente.nombre}" class="soporte-logo">`;
+            } else if (aseguradora && aseguradora.logo) {
+                logoHtml = `<img src="${aseguradora.logo}" alt="${aseguradora.nombre}" class="soporte-logo">`;
+            } else {
+                logoHtml = `<div class="soporte-logo-text">${aseguradora ? aseguradora.nombre : aseguradoraData.nombre}</div>`;
+            }
+            
+            card.innerHTML = `
+                <div class="soporte-card-header">
+                    ${logoHtml}
+         
+                </div>
+                <div class="soporte-card-content">
+                    <div class="soporte-info-item">
+                        <i class="fas fa-map-marker-alt soporte-icon"></i>
+                        <div class="soporte-info-text">
+                            <span class="soporte-info-label">Oficina de atención:</span>
+                            <span class="soporte-info-value">${aseguradoraData.oficina}</span>
+                        </div>
+                    </div>
+                    <div class="soporte-info-item">
+                        <i class="fas fa-clock soporte-icon"></i>
+                        <div class="soporte-info-text">
+                            <span class="soporte-info-label">Horario de atención:</span>
+                            <span class="soporte-info-value">${aseguradoraData.horario}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            if (soporteGrid) soporteGrid.appendChild(card);
+        });
+    } else {
+        // Ocultar la sección
+        if (soporteSection) soporteSection.style.display = 'none';
+    }
+}
+
 // Cargar información del footer
 function cargarFooter() {
     const cliente = clientes[clienteActual];
@@ -498,5 +660,11 @@ function contratarProducto(productoId) {
     console.log(`Contratar producto: ${productoId}`);
     // Aquí se puede agregar la lógica de contratación en el futuro
     alert(`Función de contratación para el producto ${productoId} - Próximamente disponible`);
+}
+
+// Función para ver detalle del producto (por ahora no hace nada)
+function verDetalleProducto(productoId) {
+    console.log(`Ver detalle producto: ${productoId}`);
+    // Aquí se puede agregar la lógica para mostrar detalles del producto en el futuro
 }
 
