@@ -343,34 +343,6 @@ const clientes = {
         ]
       },
       {
-        id: "maternidad",
-        nombre: "Maternidad",
-        icono: "fas fa-baby",
-        imagen: "https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=1200&h=600&fit=crop",
-        descripcion: "Protección integral para embarazo, parto y cuidado del recién nacido",
-        beneficios: [
-          "Control prenatal completo durante todo el embarazo",
-          "Parto natural y cesárea cubiertos",
-          "Atención del recién nacido incluida",
-          "Lactancia materna y consultas pediátricas",
-          "Ecografías y exámenes prenatales sin límite"
-        ],
-        preguntasFrecuentes: [
-          {
-            pregunta: "¿Desde cuándo puedo contratar el seguro?",
-            respuesta: "Puedes contratarlo antes del embarazo o durante los primeros 3 meses de gestación."
-          },
-          {
-            pregunta: "¿Cubre parto natural y cesárea?",
-            respuesta: "Sí, cubrimos ambos tipos de parto, incluyendo todas las complicaciones que puedan surgir."
-          },
-          {
-            pregunta: "¿Qué incluye la atención del recién nacido?",
-            respuesta: "Incluye atención pediátrica, vacunas, exámenes de rutina y seguimiento durante el primer año."
-          }
-        ]
-      },
-      {
         id: "especialidades",
         nombre: "Especialidades",
         icono: "fas fa-user-md",
@@ -445,24 +417,6 @@ const clientes = {
         descripcion: "Cobertura completa para hospitalizaciones y cirugías de alta complejidad",
         caracteristicas: ["Todo el plan básico", "Cirugías de alta complejidad", "UCI avanzada", "Segunda opinión quirúrgica", "Centros internacionales"],
         aseguradora: "sura"
-      },
-      {
-        id: "maternidad-basico",
-        categoria: "maternidad",
-        nombre: "Plan Maternidad Básico",
-        precio: "$50.000",
-        descripcion: "Protección completa para embarazo y parto",
-        caracteristicas: ["Control prenatal completo", "Parto natural y cesárea", "Atención del recién nacido", "Ecografías incluidas"],
-        aseguradora: "propia"
-      },
-      {
-        id: "maternidad-premium",
-        categoria: "maternidad",
-        nombre: "Plan Maternidad Premium",
-        precio: "$85.000",
-        descripcion: "Cobertura premium para embarazo, parto y primer año del bebé",
-        caracteristicas: ["Todo el plan básico", "Seguimiento pediátrico primer año", "Lactancia materna", "Vacunas incluidas", "Consultas ilimitadas"],
-        aseguradora: "help"
       },
       {
         id: "especialidades-basico",

@@ -252,7 +252,17 @@ function cargarCategorias() {
     categoriasGrid.innerHTML = '';
     if (navMenu) navMenu.innerHTML = '';
     
-    cliente.categorias.forEach(categoria => {
+    // Construir arreglo de categorías incluyendo la opción "Todos" al inicio
+    const categoriasConTodos = [
+        {
+            id: 'todos',
+            nombre: 'Todos',
+            icono: 'fas fa-layer-group'
+        },
+        ...cliente.categorias
+    ];
+
+    categoriasConTodos.forEach(categoria => {
         // Crear tarjeta de categoría
         const categoriaCard = document.createElement('div');
         categoriaCard.className = 'categoria-card';
@@ -290,9 +300,9 @@ function cargarCategorias() {
         }
     });
     
-    // Si no hay categoría seleccionada, seleccionar automáticamente la primera
-    if (!categoriaSeleccionada && cliente.categorias.length > 0) {
-        seleccionarCategoria(cliente.categorias[0].id, false); // false para no hacer scroll
+    // Si no hay categoría seleccionada, seleccionar "Todos" por defecto
+    if (!categoriaSeleccionada && categoriasConTodos.length > 0) {
+        seleccionarCategoria('todos', false); // false para no hacer scroll
     }
 }
 
@@ -343,8 +353,8 @@ function cargarProductos() {
     
     let productosFiltrados = cliente.productos;
     
-    // Filtrar por categoría si hay una seleccionada
-    if (categoriaSeleccionada) {
+    // Filtrar por categoría si hay una seleccionada distinta de "todos"
+    if (categoriaSeleccionada && categoriaSeleccionada !== 'todos') {
         productosFiltrados = cliente.productos.filter(
             producto => producto.categoria === categoriaSeleccionada
         );
@@ -356,7 +366,7 @@ function cargarProductos() {
     const productosTitleIcon = document.getElementById('productosTitleIcon');
     const productosSubtitle = document.getElementById('productosSubtitle');
     
-    if (categoriaSeleccionada) {
+    if (categoriaSeleccionada && categoriaSeleccionada !== 'todos') {
         const categoria = cliente.categorias.find(c => c.id === categoriaSeleccionada);
         productosTitleText.textContent = categoria.nombre;
         productosTitle.setAttribute('data-text', 'Nuestros Seguros');
@@ -437,8 +447,10 @@ function cargarProductos() {
 function actualizarInfoCategoria() {
     const cliente = clientes[clienteActual];
     
-    // Si no hay categoría seleccionada, mostrar la primera por defecto
-    const categoriaId = categoriaSeleccionada || cliente.categorias[0].id;
+    // Si no hay categoría seleccionada o es "todos", usar la primera categoría real por defecto
+    const categoriaId = !categoriaSeleccionada || categoriaSeleccionada === 'todos'
+        ? cliente.categorias[0].id
+        : categoriaSeleccionada;
     const categoria = cliente.categorias.find(c => c.id === categoriaId);
     
     if (!categoria) return;
@@ -465,14 +477,7 @@ function actualizarInfoCategoria() {
         faqsList.appendChild(faqItem);
     });
     
-    // Si no había categoría seleccionada, seleccionar la primera visualmente
-    if (!categoriaSeleccionada) {
-        const primeraCategoria = document.querySelector(`[data-categoria-id="${categoriaId}"]`);
-        if (primeraCategoria) {
-            primeraCategoria.classList.add('active');
-        }
-        categoriaSeleccionada = categoriaId;
-    }
+    // Si no había categoría seleccionada, no forzar selección aquí
 }
 
 // Cargar portal y formulario de apoyo
